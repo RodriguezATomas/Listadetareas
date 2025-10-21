@@ -19,11 +19,13 @@
     
 
         <h1>Teoria de la Computacion</h1>
-       <h2>Lista de Tareas</h2>
+        <h2>Lista de Tareas</h2>
+
+        <?php include("../../../../conexion.php")?>
 
         <a name="" id="" class="btn btn-primary" href="../../indexCuarto.php" role="button">volver</a>
         <br><br>
-        <a name="" id="" class="btn btn-primary" href="#" role="button">Agregar Tarea</a>
+        <a name="" id="" class="btn btn-primary" href="agregarTDLC.php" role="button">Agregar Tarea</a>
 
        <div class="table-responsive">
         <br>
@@ -37,18 +39,20 @@
                 </tr>
             </thead>
             <tbody>
+            <?php  
+			    $sql="SELECT * FROM TeoriaDLC ";
+			    $resultado=mysqli_query($conn, $sql) or die ($sql . mysqli_error($conn));
+			    while ($teoria = mysqli_fetch_array($resultado)){ 
+                    if ($teoria ['baja_socio'] == 0) {
+
+                }?>
+
                 <tr class="">
-                    <td scope="row">R1C1</td>
-                    <td>R1C2</td>
-                    <td><a name="" id="" class="btn btn-primary" href="#" role="button">Button</a></td>
-                    <td><a name="" id="" class="btn btn-primary" href="#" role="button">Button</a></td>
+                            <td><?php echo $socios['Tareas_TDLC']; ?></td>
+                            <td><?php echo $socios['Consignas_TDLC']; ?></td>
+                            <td><input type="button" class="btn btn-primary" value="Modificar" onclick="location.replace('modificarTDLC.php?Tareas_TDLC=<? echo $tareasTDLC ['Tareas_TDLC'];?>');"></td>    
                 </tr>
-                <tr class="">
-                    <td scope="row">Item</td>
-                    <td>Item</td>
-                    <td><a name="" id="" class="btn btn-primary" href="#" role="button">Button</a></td>
-                    <td><a name="" id="" class="btn btn-primary" href="#" role="button">Button</a></td>
-                </tr>
+                <?php } ?>
             </tbody>
         </table>
        </div>
